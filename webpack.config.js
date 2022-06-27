@@ -34,18 +34,33 @@ module.exports = {
         test: /\.less$/, // 匹配执行类型的文件
         use: ['style-loader', 'css-loader', 'less-loader'],
       },
+      //webpack4
+      // {
+      //   test: /\.(png|jpg|gif)$/i,
+      //   // use: ['url-loader'],
+      //   use: [
+      //     {
+      //       loader: 'url-loader', // 匹配文件, 尝试转base64字符串打包到js中
+      //       // 配置limit, 超过8k, 不转, file-loader复制, 随机名, 输出文件
+      //       options: {
+      //         limit: 8 * 1024,
+      //       },
+      //     },
+      //   ],
+      // },
+      //webpack5
       {
-        test: /\.(png|jpg|gif)$/i,
-        // use: ['url-loader'],
-        use: [
-          {
-            loader: 'url-loader', // 匹配文件, 尝试转base64字符串打包到js中
-            // 配置limit, 超过8k, 不转, file-loader复制, 随机名, 输出文件
-            options: {
-              limit: 8 * 1024,
-            },
-          },
-        ],
+        // 图片文件的配置(仅适用于webpack5版本)
+        test: /\.(png|jpg|gif|jpeg)$/i,
+        type: 'asset', // 在导出一个 data URI 和发送一个单独的文件之间自动选择
+      },
+      {
+        // webpack5默认内部不认识这些文件, 所以当做静态资源直接输出即可
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'font-[name].[hash:6][ext]',
+        },
       },
     ],
   },
