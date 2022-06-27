@@ -34,6 +34,19 @@ module.exports = {
         test: /\.less$/, // 匹配执行类型的文件
         use: ['style-loader', 'css-loader', 'less-loader'],
       },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        // use: ['url-loader'],
+        use: [
+          {
+            loader: 'url-loader', // 匹配文件, 尝试转base64字符串打包到js中
+            // 配置limit, 超过8k, 不转, file-loader复制, 随机名, 输出文件
+            options: {
+              limit: 8 * 1024,
+            },
+          },
+        ],
+      },
     ],
   },
 };

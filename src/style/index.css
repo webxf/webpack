@@ -4,3 +4,6 @@
   background-color: hotpink;
   color: '#000';
 }
+body {
+  background: url(../assets//1.gif) no-repeat center;
+}
