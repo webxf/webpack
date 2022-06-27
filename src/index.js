@@ -13,3 +13,4 @@ let img2 = document.createElement('img');
 img2.src = imgUrl2;
 document.body.appendChild(img2);
 import './assets/fonts/iconfont.css';
+import vue from './app.vue';

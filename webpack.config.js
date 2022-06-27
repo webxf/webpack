@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 module.exports = {
   mode: 'development',
   entry: './src/index.js', //入口的路径
@@ -15,6 +16,7 @@ module.exports = {
       filename: 'index.html', //html 文件 文件名称
     }),
     new CleanWebpackPlugin(),
+    new VueLoaderPlugin(),
   ],
   devServer: {
     open: true,
@@ -71,6 +73,10 @@ module.exports = {
             presets: ['@babel/preset-env'], // 预设:转码规则(用bable开发环境本来预设的)
           },
         },
+      },
+      {
+        test: /\.vue$/, // 匹配
+        use: 'vue-loader',
       },
     ],
   },
